@@ -1,0 +1,40 @@
+
+<div class="col-md-12">
+  <div class="product">
+    <%= link_to("New product", new_admin_product_path, class: "btn btn-primary pull-right") %>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+
+        <th>商品名称</th>
+        <th>商品描述</th>
+        <th>价格</th>
+        <th>库存数量</th>
+
+        <th>管理</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+
+          <td>
+            <%= link_to(product.title, admin_product_path(product)) %>
+          </td>
+          <td><%= product.description %></td>
+          <td><%= product.price %></td>
+          <td><%= product.quantity %></td>
+
+
+          <td>
+              <%= link_to("Edit", edit_admin_product_path(product), class: "btn btn-sm btn-default")%>
+              <%= link_to("Delete", admin_product_path(product),    class: "btn btn-sm btn-default",
+                          method: :delete, data: { confirm: "Are you sure?" } )%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
