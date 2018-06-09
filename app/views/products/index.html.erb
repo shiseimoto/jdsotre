@@ -5,9 +5,11 @@
     <thead>
       <tr>
         <th>商品名称</th>
+        <th>商品图片</th>
         <th>商品描述</th>
         <th>价格</th>
         <th>库存数量</th>
+
       </tr>
     </thead>
     <tbody>
@@ -16,6 +18,15 @@
 
           <td>
             <%= link_to(product.title, admin_product_path(product)) %>
+          </td>
+          <td>
+            <%= link_to product_path(product) do %>
+           <% if product.image.present? %>
+             <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+           <% else %>
+             <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+           <% end %>
+         <% end %>
           </td>
           <td><%= product.description %></td>
           <td><%= product.price %></td>
